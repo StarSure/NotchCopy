@@ -10,7 +10,7 @@
 
 ## 下载
 
-[下载 Mac 安装包 v0.4.0](https://github.com/StarSure/NotchCopy/releases/download/v0.4.0/NotchCopy-v0.4.0-universal.zip) · [查看最新版本与校验文件](https://github.com/StarSure/NotchCopy/releases/latest)
+[下载 Mac 安装包 v0.4.1](https://github.com/StarSure/NotchCopy/releases/download/v0.4.1/NotchCopy-v0.4.1-universal.zip) · [查看最新版本与校验文件](https://github.com/StarSure/NotchCopy/releases/latest)
 
 1. 下载 Release 附件中的 `NotchCopy-…-universal.zip`。GitHub 自动生成的 `Source code` 是源码，不是安装包。
 2. 双击 ZIP 解压，将 `NotchCopy.app` 拖入「应用程序」，然后打开。
@@ -40,6 +40,8 @@
 | `Esc` | 收起面板 |
 
 展开后可直接搜索标题和正文。点击右上角 `+` 新增文案；编辑窗口支持多行、`Command + S` 保存和未保存修改提示。
+
+列表由鼠标滚轮或触控板手动滚动；鼠标悬停和键盘选择只改变高亮，不会自动滚动列表。
 
 上方连接外接屏时，悬停区位于刘海下沿附近，与屏幕交界留出距离。已进入外接屏的鼠标不会触发内置屏面板。程序不会锁定、移动鼠标或修改显示器排列；正常跨屏移动保留。无物理刘海的 Mac 也可使用屏幕顶部中央的隐藏热区。
 

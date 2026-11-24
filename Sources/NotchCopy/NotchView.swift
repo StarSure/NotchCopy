@@ -93,24 +93,20 @@ struct NotchView: View {
                     }
                 }.frame(maxWidth: .infinity, maxHeight: .infinity)
             } else {
-                ScrollViewReader { proxy in
-                    ScrollView {
-                        LazyVStack(spacing: 3) {
-                            ForEach(store.filtered) { item in
-                                SnippetRow(item: item, selected: controller.selectedID == item.id,
-                                    copied: controller.copiedID == item.id,
-                                    select: { controller.selectedID = item.id },
-                                    copy: { controller.copy(item) },
-                                    preview: { controller.preview(item) },
-                                    edit: { controller.edit(item) },
-                                    move: { store.move(item, to: 0) },
-                                    remove: { pendingDelete = item })
-                                    .id(item.id)
-                            }
+                // Hover changes the selection only. Scrolling to that selection
+                // would feed back into hover as rows move under the pointer.
+                ScrollView {
+                    LazyVStack(spacing: 3) {
+                        ForEach(store.filtered) { item in
+                            SnippetRow(item: item, selected: controller.selectedID == item.id,
+                                copied: controller.copiedID == item.id,
+                                select: { controller.selectedID = item.id },
+                                copy: { controller.copy(item) },
+                                preview: { controller.preview(item) },
+                                edit: { controller.edit(item) },
+                                move: { store.move(item, to: 0) },
+                                remove: { pendingDelete = item })
                         }
-                    }
-                    .onChange(of: controller.selectedID) { _, id in
-                        if let id { withAnimation(.easeOut(duration: 0.1)) { proxy.scrollTo(id, anchor: .center) } }
                     }
                 }
             }
