@@ -1,8 +1,20 @@
 # Agent 安装与配置指南
 
-本指南供能操作用户当前 Mac 的 Agent 使用，包括本机运行的 Codex、Claude Code、Cursor Agent。需要终端执行、文件读写以及访问 GitHub 的能力。这里的接入方式是由 Agent 协助安装和配置应用；应用本身不需要模型账号、API Key 或 MCP 服务。
+本指南供能操作用户当前 Mac 的 Agent 使用，包括本机运行的 Codex、Claude Code、WorkBuddy、Cursor Agent。需要终端执行、文件读写以及访问 GitHub 的能力。这里的接入方式是由 Agent 协助安装和配置应用；应用本身不需要模型账号、API Key 或 MCP 服务。
 
 [返回首页与可复制的安装提示词](../README.md#交给-agent-安装)
+
+## 工具与运行模式
+
+安装任务使用自然语言说明与 macOS 文件、命令操作，不依赖某一个模型 API。更换模型时可复用同一段提示词，执行结果仍取决于模型理解和工具权限。
+
+| 工具 | 适用方式 | 需要确认 |
+| --- | --- | --- |
+| Claude Code | 当前 Mac 的终端或本地会话 | 允许执行命令、访问 GitHub，并读写应用和文案目录 |
+| WorkBuddy | 在当前 Mac 上执行的本地任务，或连接这台 Mac 的任务 | 任务使用本机环境，且权限覆盖安装目录与文案目录；独立云电脑无法替代本机安装 |
+| Codex / Cursor Agent | 能操作当前 Mac 的本地会话 | 有本机终端与文件权限；远程 Linux 沙箱不能直接安装到用户 Mac |
+
+[Claude Code 官方介绍](https://code.claude.com/docs/en/overview)说明其文件与命令执行能力；[WorkBuddy 官方指南](https://www.codebuddy.cn/docs/workbuddy/Assistant-Guide)说明本机 Shell 执行与连接电脑模式。以上用于判断流程适用性，尚未逐工具完成全新 Mac 的端到端验收。系统安全确认仍由用户本人处理。
 
 ## 安装流程
 
@@ -82,6 +94,6 @@
 
 ## 当前范围
 
-同一份安装提示词可交给不同本机 Agent 使用。各工具的权限、命令审批和 GUI 能力由工具及用户环境决定；尚未逐一完成 Codex、Claude Code、Cursor 的全新 Mac 安装验收。
+同一份安装提示词可交给不同本机 Agent 使用。各工具的权限、命令审批和 GUI 能力由工具及用户环境决定；尚未逐一完成 Codex、Claude Code、WorkBuddy、Cursor 的全新 Mac 安装验收。
 
 NotchCopy 当前通过系统剪贴板供用户粘贴文案。自动发送到聊天、Agent 专用插件、MCP、命令行文案管理接口与云同步均未实现。

@@ -32,7 +32,7 @@
 
 ## 交给 Agent 安装
 
-将下面整段复制给**在这台 Mac 上运行、具有终端和文件读写能力**的 Codex、Claude Code 或 Cursor Agent。它们可以按同一份指南协助安装和配置；纯网页聊天或远程 Linux 环境无法直接操作你的 Mac。无需为 NotchCopy 配置模型 API Key。
+将下面整段复制给**在这台 Mac 上运行、具有终端和文件读写能力**的 Codex、Claude Code、WorkBuddy 或 Cursor Agent。它们可以按同一份指南协助安装和配置；纯网页聊天或远程 Linux 环境无法直接操作你的 Mac。WorkBuddy 需使用在当前 Mac 上执行的任务，而不是独立云电脑。无需为 NotchCopy 配置模型 API Key。适用条件与验证范围见 [Agent 指南](docs/AGENT_SETUP.md#工具与运行模式)。
 
 ```text
 请帮我在这台 Mac 上安装和配置 NotchCopy（https://github.com/StarSure/NotchCopy）。
