@@ -9,7 +9,7 @@ final class PointerWatcher {
     var isDragging: () -> Bool = { false }
     var isPanelOpen: () -> Bool = { false }
 
-    var openDelay: () -> TimeInterval = { 0.2 }
+    var openDelay: () -> TimeInterval = { 0.08 }
     var closeDelay: TimeInterval = 0.3
 
     var warmZone: CGRect = .zero
@@ -17,7 +17,7 @@ final class PointerWatcher {
     var restThreshold: TimeInterval = 3
 
     private let fastInterval: TimeInterval = 1.0 / 60
-    private let idleInterval: TimeInterval = 1.0 / 8
+    private let idleInterval: TimeInterval = 1.0 / 16
 
     var onChange: ((Bool) -> Void)?
     var onInteractiveChange: ((Bool) -> Void)?
@@ -55,11 +55,9 @@ final class PointerWatcher {
         let timer = Timer(timeInterval: interval, repeats: true) { [weak self] _ in
             MainActor.assumeIsolated { self?.tick() }
         }
-        // The idle timer may drift by half its beat: nothing it watches for
-        // resolves faster than that, and the slack lets the system fold the
-        // wake-up into others it was making anyway. The fast timer keeps its
-        // precision — it is the one measuring dwell.
-        timer.tolerance = warm ? interval / 4 : interval / 2
+        // Keep the first sample responsive after a quick approach from idle.
+        // Near the notch, 60 Hz sampling measures the short intentional dwell.
+        timer.tolerance = interval / 4
         RunLoop.main.add(timer, forMode: .common)
         self.timer = timer
     }

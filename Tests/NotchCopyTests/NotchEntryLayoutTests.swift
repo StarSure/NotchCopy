@@ -26,11 +26,22 @@ struct NotchEntryLayoutTests {
         let target = NotchEntryLayout.lowerEdgeTarget(topY: 982, centerX: 756,
                                                      width: 185, notchDepth: 32)
         #expect(builtIn.contains(target))
-        #expect(target.maxY == 964)
+        #expect(target.maxY == 974)
         #expect(target.contains(CGPoint(x: 756, y: 946)))
         #expect(target.contains(CGPoint(x: 756, y: 956)))
         #expect(!target.contains(CGPoint(x: 756, y: 982)))
         #expect(!target.contains(CGPoint(x: 756, y: 983)))
+    }
+    @Test func approachingBelowOrNearTheSideOfTheNotchIsEasyToHit() {
+        let target = NotchEntryLayout.lowerEdgeTarget(topY: 982, centerX: 756,
+                                                     width: 185, notchDepth: 32)
+        #expect(target.contains(CGPoint(x: 756, y: 930)))
+        #expect(target.contains(CGPoint(x: 670, y: 946)))
+        #expect(target.contains(CGPoint(x: 842, y: 946)))
+        #expect(target.contains(CGPoint(x: 756, y: 970)))
+        for y in 974...990 {
+            #expect(!target.contains(CGPoint(x: 756, y: y)))
+        }
     }
     @Test func passingOverNeighbouringMenuItemsDoesNotTrigger() {
         let target = NotchEntryLayout.lowerEdgeTarget(topY: 982, centerX: 756,

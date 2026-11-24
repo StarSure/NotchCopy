@@ -84,7 +84,6 @@ final class NotchController: ObservableObject {
         pointer.openRect = geometry.openTarget
         pointer.closeRect = geometry.closeTarget
         pointer.warmZone = CGRect(x: screen.minX, y: screen.maxY - 240, width: screen.width, height: 240)
-        pointer.openDelay = { geometry.hasUpperNeighbor ? 0.12 : 0.18 }
         pointer.isPanelOpen = { [weak self] in self?.isOpen ?? false }
         pointer.onInteractiveChange = { [weak self] interactive in self?.panel?.ignoresMouseEvents = !interactive }
         pointer.onChange = { [weak self] inside in

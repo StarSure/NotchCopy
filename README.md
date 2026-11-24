@@ -10,7 +10,7 @@
 
 ## 下载
 
-[下载 Mac 安装包 v0.4.1](https://github.com/StarSure/NotchCopy/releases/download/v0.4.1/NotchCopy-v0.4.1-universal.zip) · [查看最新版本与校验文件](https://github.com/StarSure/NotchCopy/releases/latest)
+[下载 Mac 安装包 v0.4.2](https://github.com/StarSure/NotchCopy/releases/download/v0.4.2/NotchCopy-v0.4.2-universal.zip) · [查看最新版本与校验文件](https://github.com/StarSure/NotchCopy/releases/latest)
 
 1. 下载 Release 附件中的 `NotchCopy-…-universal.zip`。GitHub 自动生成的 `Source code` 是源码，不是安装包。
 2. 双击 ZIP 解压，将 `NotchCopy.app` 拖入「应用程序」，然后打开。

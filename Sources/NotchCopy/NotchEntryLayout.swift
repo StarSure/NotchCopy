@@ -13,9 +13,13 @@ enum NotchEntryLayout {
     }
     static func lowerEdgeTarget(topY: CGFloat, centerX: CGFloat, width: CGFloat,
                                 notchDepth: CGFloat) -> CGRect {
-        let targetWidth = max(1, width - 24)
+        // Cover more of the notch and the approach from below, while keeping
+        // clear of adjacent menu items and the upper display boundary.
+        let targetWidth = max(1, width - 8)
+        let bottom = topY - notchDepth - 22
+        let top = topY - 8
         return CGRect(x: centerX - targetWidth / 2,
-                      y: topY - notchDepth - 10,
-                      width: targetWidth, height: 24)
+                      y: bottom,
+                      width: targetWidth, height: max(1, top - bottom))
     }
 }
