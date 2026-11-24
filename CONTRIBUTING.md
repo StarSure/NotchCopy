@@ -13,4 +13,6 @@ Scripts/build.sh
 
 界面变更请附上使用示例数据的截图，避免上传个人文案、数据目录、日志或凭据。使用 `dist/NotchCopy.app/Contents/MacOS/NotchCopy --demo --show` 启动截图模式。
 
+需要更新 README 的面板截图时，可运行 `Scripts/capture-panel-screenshots.sh`，直接复用原生视图生成列表、搜索、全文预览和空状态截图；来源与编辑器截图方法见 [截图说明](docs/screenshots/README.md)。
+
 问题报告建议包含 macOS 版本、芯片类型、是否有物理刘海、显示器排列和复现步骤。不要提交真实文案文件；使用脱敏的最小示例。
