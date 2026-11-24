@@ -1,0 +1,18 @@
+NotchCopy
+Copyright (c) 2026 StarSure
+https://github.com/StarSure/NotchCopy
+
+This project is derived in part from Cyclop by akalikbergenov:
+https://github.com/akalikbergenov/cyclop
+Upstream snapshot: 8d1b9b2045979dc7bbe742994d1cd89d51090d65
+License: MIT (the full permission notice is preserved in LICENSE).
+
+Adapted components include notch-window geometry and shape, non-activating
+panel event handling, pointer dwell tracking, snippet persistence, and their
+original regression tests. NotchCopy adds a focused snippet-only application,
+hidden lower-edge activation, dual-display boundary handling, a compact UI,
+full-text preview, copy-and-dismiss with focus restoration, keyboard navigation,
+local daily backups, independent branding, packaging, and project documentation.
+
+The original project's name, icon, release binaries, unrelated modules, and
+personal snippet data are not included in this distribution.

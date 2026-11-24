@@ -1,0 +1,14 @@
+.DS_Store
+.build/
+.swiftpm/
+dist/
+*.xcuserstate
+xcuserdata/
+*.log
+.env
+.env.*
+!*.example
+
+# Personal snippets stay outside the public repository.
+snippets.json
+Backups/

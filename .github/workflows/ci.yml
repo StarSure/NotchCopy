@@ -1,0 +1,29 @@
+name: macOS build and tests
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test-and-build:
+    runs-on: macos-15
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - name: Run regression tests
+        run: swift test
+      - name: Build universal app
+        run: Scripts/build.sh --universal
+      - name: Verify both architectures
+        run: |
+          lipo -verify_arch arm64 x86_64 dist/NotchCopy.app/Contents/MacOS/NotchCopy
+          codesign --verify --strict dist/NotchCopy.app
+      - uses: actions/upload-artifact@v7.0.2
+        with:
+          name: NotchCopy-macOS-universal
+          path: |
+            dist/*.zip
+            dist/SHA256SUMS.txt
+          retention-days: 14
