@@ -12,3 +12,15 @@ xcuserdata/
 # Personal snippets stay outside the public repository.
 snippets.json
 Backups/
+
+# Local signing material and Python test caches.
+.local/
+*.p12
+*.p8
+*.cer
+*.key
+*.pem
+*.certSigningRequest
+*.mobileprovision
+__pycache__/
+*.py[cod]

@@ -62,6 +62,8 @@ Scripts/build.sh --universal
 
 应用与 ZIP 输出到 `dist/`，并附带 SHA-256 校验文件。具备自己的 Developer ID 时，可通过 `CODESIGN_IDENTITY` 指定签名身份；脚本不会自动提交 Apple 公证。
 
+正式签名、公证、附加票据与重新打包流程见 [Apple 公证指南](docs/NOTARIZATION.md)。可先执行 `python3 Scripts/notarize.py --plan` 查看计划；实际提交需要有效会员、本机 Developer ID Application 证书和 Keychain 认证。
+
 ## 项目结构
 
 - `NotchController`：窗口生命周期、显示器变更、复制后收起与焦点恢复。
