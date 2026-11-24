@@ -18,7 +18,8 @@ jobs:
         run: Scripts/build.sh --universal
       - name: Verify both architectures
         run: |
-          lipo -verify_arch arm64 x86_64 dist/NotchCopy.app/Contents/MacOS/NotchCopy
+          lipo dist/NotchCopy.app/Contents/MacOS/NotchCopy -verify_arch arm64
+          lipo dist/NotchCopy.app/Contents/MacOS/NotchCopy -verify_arch x86_64
           codesign --verify --strict dist/NotchCopy.app
       - uses: actions/upload-artifact@v7.0.2
         with:

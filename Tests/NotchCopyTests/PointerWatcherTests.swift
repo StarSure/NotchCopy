@@ -75,3 +75,16 @@ struct PointerReopenTests {
         #expect(changes == [true])
     }
 }
+
+@MainActor
+struct PointerRebuildTests {
+    @Test func stoppingDropsThePreviousWindowsClickArea() {
+        let watcher = PointerWatcher()
+        watcher.interactiveRect = CGRect(x: 0, y: 0, width: 100, height: 100)
+        watcher.stop()
+        var states: [Bool] = []
+        watcher.onInteractiveChange = { states.append($0) }
+        watcher.process(point: CGPoint(x: 50, y: 50), at: Date())
+        #expect(states == [false])
+    }
+}

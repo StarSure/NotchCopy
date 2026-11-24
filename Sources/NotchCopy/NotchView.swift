@@ -5,6 +5,7 @@ struct NotchView: View {
     @ObservedObject var store: SnippetStore
     let geometry: NotchGeometry
     @State private var pendingDelete: Snippet?
+    @FocusState private var searching: Bool
 
     private var size: CGSize { controller.isOpen ? NotchGeometry.expandedSize : geometry.collapsedSize }
     private var preview: Snippet? { store.items.first { $0.id == controller.previewID } }
@@ -46,6 +47,8 @@ struct NotchView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .foregroundStyle(.white)
         .onReceive(NotificationCenter.default.publisher(for: .snippetStoreChanged)) { _ in store.reload() }
+        .onChange(of: controller.searchFocusToken) { _, _ in searching = true }
+        .onChange(of: controller.isOpen) { _, open in if !open { searching = false } }
         .onChange(of: store.query) { _, _ in controller.selectedID = store.filtered.first?.id }
         .alert("删除这条文案？", isPresented: Binding(get: { pendingDelete != nil }, set: { if !$0 { pendingDelete = nil } })) {
             Button("取消", role: .cancel) { pendingDelete = nil }
@@ -65,6 +68,7 @@ struct NotchView: View {
                     TextField("搜索文案", text: $store.query)
                         .font(.system(size: 13)).textFieldStyle(.plain)
                         .accessibilityIdentifier("snippet-search")
+                        .focused($searching)
                     if !store.query.isEmpty {
                         Button { store.query = "" } label: { Image(systemName: "xmark.circle.fill") }
                             .buttonStyle(.plain).foregroundStyle(.secondary)

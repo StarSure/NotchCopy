@@ -27,6 +27,9 @@ if [[ "${#BINARIES[@]}" == "2" ]]; then
 else
   cp "${BINARIES[0]}" "$APP/Contents/MacOS/NotchCopy"
 fi
+for arch in "${ARCHS[@]}"; do
+  lipo "$APP/Contents/MacOS/NotchCopy" -verify_arch "$arch"
+done
 swift Scripts/make-icon.swift "$ROOT/.build/icon.iconset"
 iconutil -c icns "$ROOT/.build/icon.iconset" -o "$APP/Contents/Resources/AppIcon.icns"
 cp LICENSE NOTICE "$APP/Contents/Resources/"

@@ -6,6 +6,7 @@ import SwiftUI
 final class NotchController: ObservableObject {
     let store: SnippetStore
     @Published private(set) var isOpen = false
+    @Published private(set) var searchFocusToken = 0
     @Published var selectedID: String?
     @Published var previewID: String?
     @Published private(set) var copiedID: String?
@@ -113,7 +114,11 @@ final class NotchController: ObservableObject {
             panel.orderFrontRegardless()
             withAnimation(.spring(response: 0.26, dampingFraction: 0.88)) { isOpen = true }
         }
-        if manual { isPinned = true; takeKeyboard() }
+        if manual {
+            isPinned = true
+            takeKeyboard()
+            searchFocusToken += 1
+        }
         pointer.setInside(true)
     }
 

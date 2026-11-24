@@ -39,6 +39,7 @@ final class PointerWatcher {
         timer?.invalidate()
         timer = nil
         awaitingSince = nil
+        interactiveRect = .zero
         // The last sent interactivity dies with the panel it was sent to. The
         // watcher outlives a rebuild, and a fresh panel starts click-through;
         // holding on to the old "already interactive" would swallow the first
@@ -147,4 +148,3 @@ final class PointerWatcher {
         onChange?(inside)
     }
 }
-
