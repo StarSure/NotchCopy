@@ -10,11 +10,22 @@
 
 ## 下载
 
-前往 [Releases](https://github.com/StarSure/NotchCopy/releases/latest) 下载 `NotchCopy-…-universal.zip`，解压后将 `NotchCopy.app` 放入「应用程序」。
+[下载 Mac 安装包 v0.4.0](https://github.com/StarSure/NotchCopy/releases/download/v0.4.0/NotchCopy-v0.4.0-universal.zip) · [查看最新版本与校验文件](https://github.com/StarSure/NotchCopy/releases/latest)
+
+1. 下载 Release 附件中的 `NotchCopy-…-universal.zip`。GitHub 自动生成的 `Source code` 是源码，不是安装包。
+2. 双击 ZIP 解压，将 `NotchCopy.app` 拖入「应用程序」，然后打开。
+3. 程序启动后默认隐藏。按 `Control + Option + V` 呼出，点击右上角 `+`，填写标题和正文后保存。
+4. 下次鼠标靠近刘海下沿，点击文案即可复制，再到目标应用中按 `Command + V` 粘贴。
 
 - macOS 14 或更新版本；通用包包含 Apple Silicon 和 Intel 两种架构。
 - 当前公开构建采用本地 ad-hoc 签名，尚未经过 Apple 公证，其他 Mac 首次打开可能受到 Gatekeeper 拦截。也可以按下文自行编译。
 - 无账号、无订阅、无第三方运行依赖。
+
+### 首次打开被 macOS 拦截
+
+当前版本尚未经过 Apple 公证，不能保证下载后直接双击打开。确认安装包来自本仓库的 Release 后，可先尝试打开一次，再进入「系统设置 → 隐私与安全性」，找到 NotchCopy 的拦截提示，点击「仍要打开」，按系统提示确认。具体入口和限制以 [Apple 官方说明](https://support.apple.com/zh-cn/102445) 为准；受管理的 Mac 可能需要管理员协助。
+
+若提示包含恶意软件或文件损坏，请停止打开，重新下载并核对 Release 中 `SHA256SUMS.txt` 的校验值，或提交 [Issue](https://github.com/StarSure/NotchCopy/issues)。不需要关闭系统门禁，也不需要授予辅助功能权限。
 
 ## 使用
 
@@ -33,6 +44,13 @@
 上方连接外接屏时，悬停区位于刘海下沿附近，与屏幕交界留出距离。已进入外接屏的鼠标不会触发内置屏面板。程序不会锁定、移动鼠标或修改显示器排列；正常跨屏移动保留。无物理刘海的 Mac 也可使用屏幕顶部中央的隐藏热区。
 
 如果快捷键被其他应用占用，菜单会显示提示，仍可使用悬停或菜单入口。程序不默认开机启动。
+
+### 常见问题
+
+- **打开后没有窗口？** 这是默认行为。使用 `Control + Option + V`，或菜单栏图标中的「显示文案」；新安装的列表为空，需要自行添加文案。
+- **外接屏在上方，悬停容易跨屏？** 将鼠标停在刘海下沿中央，无需推到屏幕最顶端；也可直接用快捷键呼出。
+- **如何开机启动？** 在 macOS「系统设置 → 通用 → 登录项与扩展」中，将应用程序目录里的 NotchCopy 添加为登录时打开的项目；不同 macOS 版本的名称可能略有不同。
+- **如何更新或备份？** 先从菜单栏退出 NotchCopy，再用新版本替换应用程序目录里的 App。文案单独保存在下述数据目录；替换 App 不会覆盖它。换电脑前可从「打开数据与备份」复制整个数据文件夹。
 
 ## 数据与隐私
 
