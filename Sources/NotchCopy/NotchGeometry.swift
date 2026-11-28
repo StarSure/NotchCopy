@@ -45,7 +45,8 @@ struct NotchGeometry {
     var collapsedSize: CGSize { CGSize(width: notchSize.width, height: notchSize.height) }
     var openTarget: CGRect {
         NotchEntryLayout.lowerEdgeTarget(topY: screen.frame.maxY, centerX: centerX,
-                                         width: notchSize.width, notchDepth: notchSize.height)
+                                         width: notchSize.width, notchDepth: notchSize.height,
+                                         hasUpperNeighbor: hasUpperNeighbor)
     }
     var closeTarget: CGRect {
         CGRect(x: centerX - Self.expandedSize.width / 2 - 12,

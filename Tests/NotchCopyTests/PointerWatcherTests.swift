@@ -4,10 +4,11 @@ import Testing
 
 @MainActor
 struct PointerWatcherTests {
-    private func watcher() -> PointerWatcher {
+    private func watcher(hasUpperNeighbor: Bool = true) -> PointerWatcher {
         let watcher = PointerWatcher()
-        watcher.screenRect = CGRect(x: 0, y: 0, width: 1512, height: 982)
-        watcher.openRect = NotchEntryLayout.lowerEdgeTarget(topY: 982, centerX: 756, width: 185, notchDepth: 32)
+        watcher.screenRect = CGRect(x: 0, y: 0, width: 1512, height: hasUpperNeighbor ? 982 : 984)
+        watcher.openRect = NotchEntryLayout.lowerEdgeTarget(topY: 982, centerX: 756, width: 185,
+                                                          notchDepth: 32, hasUpperNeighbor: hasUpperNeighbor)
         watcher.closeRect = CGRect(x: 464, y: 580, width: 584, height: 402)
         return watcher
     }
@@ -38,6 +39,29 @@ struct PointerWatcherTests {
         watcher.process(point: CGPoint(x: 756, y: 990), at: time.addingTimeInterval(0.5))
         #expect(changes.isEmpty)
         #expect(!watcher.isInside)
+    }
+
+    @Test func aFastApproachThatStopsAtTheSingleDisplayTopStillOpens() {
+        let watcher = watcher(hasUpperNeighbor: false)
+        var changes: [Bool] = []
+        watcher.onChange = { changes.append($0) }
+        let time = Date(timeIntervalSinceReferenceDate: 0)
+        watcher.process(point: CGPoint(x: 756, y: 946), at: time)
+        watcher.process(point: CGPoint(x: 756, y: 981), at: time.addingTimeInterval(0.04))
+        #expect(changes.isEmpty)
+        watcher.process(point: CGPoint(x: 756, y: 981), at: time.addingTimeInterval(0.10))
+        #expect(changes == [true])
+    }
+
+    @Test func theUpperDisplayBoundaryStillDoesNotOpenWhenRestingThere() {
+        let watcher = watcher()
+        var changes: [Bool] = []
+        watcher.onChange = { changes.append($0) }
+        let time = Date(timeIntervalSinceReferenceDate: 0)
+        watcher.process(point: CGPoint(x: 756, y: 946), at: time)
+        watcher.process(point: CGPoint(x: 756, y: 981), at: time.addingTimeInterval(0.04))
+        watcher.process(point: CGPoint(x: 756, y: 981), at: time.addingTimeInterval(1))
+        #expect(changes.isEmpty)
     }
 
     @Test func leavingTheTargetResetsDwellBeforeReturning() {

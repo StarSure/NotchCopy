@@ -24,7 +24,7 @@ struct NotchEntryLayoutTests {
     }
     @Test func hiddenTargetOpensBelowBoundaryWithoutCoveringAWindow() {
         let target = NotchEntryLayout.lowerEdgeTarget(topY: 982, centerX: 756,
-                                                     width: 185, notchDepth: 32)
+                                                     width: 185, notchDepth: 32, hasUpperNeighbor: true)
         #expect(builtIn.contains(target))
         #expect(target.maxY == 974)
         #expect(target.contains(CGPoint(x: 756, y: 946)))
@@ -34,7 +34,7 @@ struct NotchEntryLayoutTests {
     }
     @Test func approachingBelowOrNearTheSideOfTheNotchIsEasyToHit() {
         let target = NotchEntryLayout.lowerEdgeTarget(topY: 982, centerX: 756,
-                                                     width: 185, notchDepth: 32)
+                                                     width: 185, notchDepth: 32, hasUpperNeighbor: true)
         #expect(target.contains(CGPoint(x: 756, y: 930)))
         #expect(target.contains(CGPoint(x: 670, y: 946)))
         #expect(target.contains(CGPoint(x: 842, y: 946)))
@@ -45,9 +45,20 @@ struct NotchEntryLayoutTests {
     }
     @Test func passingOverNeighbouringMenuItemsDoesNotTrigger() {
         let target = NotchEntryLayout.lowerEdgeTarget(topY: 982, centerX: 756,
-                                                     width: 185, notchDepth: 32)
+                                                     width: 185, notchDepth: 32, hasUpperNeighbor: true)
         #expect(!target.contains(CGPoint(x: 660, y: 950)))
         #expect(!target.contains(CGPoint(x: 852, y: 950)))
+        #expect(!target.contains(CGPoint(x: 756, y: 920)))
+    }
+
+    @Test func singleDisplayIncludesTheTopEdgeWithoutIncludingAdjacentMenuItems() {
+        let target = NotchEntryLayout.lowerEdgeTarget(topY: 982, centerX: 756,
+                                                     width: 185, notchDepth: 32, hasUpperNeighbor: false)
+        #expect(target.contains(CGPoint(x: 756, y: 981)))
+        #expect(target.contains(CGPoint(x: 756, y: 982)))
+        #expect(target.contains(CGPoint(x: 756, y: 930)))
+        #expect(!target.contains(CGPoint(x: 660, y: 981)))
+        #expect(!target.contains(CGPoint(x: 852, y: 981)))
         #expect(!target.contains(CGPoint(x: 756, y: 920)))
     }
 }

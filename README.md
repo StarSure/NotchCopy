@@ -29,7 +29,7 @@ macOS 14+ · Apple Silicon / Intel · 本机存储 · MIT 开源
 | 本机数据与每日备份 | 文案以 JSON 保存在本机，每日首次修改前保存旧内容 |
 | Agent 辅助安装与配置 | 一段通用提示词可交给有本机权限的 Agent，协助安装和批量添加文案 |
 
-最近两次交互改进：**v0.4.1** 去掉选中项自动居中滚动；**v0.4.2** 扩大触发区、缩短悬停等待，并保留跨屏防误触。完整记录见 [CHANGELOG](CHANGELOG.md)。
+最近的交互改进：**v0.4.1** 去掉选中项自动居中滚动；**v0.4.2** 扩大触发区、缩短悬停等待；**v0.4.3** 修复单屏鼠标停在最顶端时不展开的问题，仅在上方邻接外接屏时保留跨屏安全间隔。完整记录见 [CHANGELOG](CHANGELOG.md)。
 
 当前交互是“保存文案 → 点击复制 → 到目标应用粘贴”。自动发送给 Agent、模型调用、云同步和文件中转均未实现。
 
@@ -57,7 +57,7 @@ macOS 14+ · Apple Silicon / Intel · 本机存储 · MIT 开源
 
 ## 下载
 
-[下载 Mac 安装包 v0.4.2](https://github.com/StarSure/NotchCopy/releases/download/v0.4.2/NotchCopy-v0.4.2-universal.zip) · [查看最新版本与校验文件](https://github.com/StarSure/NotchCopy/releases/latest)
+[下载 Mac 安装包 v0.4.3](https://github.com/StarSure/NotchCopy/releases/download/v0.4.3/NotchCopy-v0.4.3-universal.zip) · [查看最新版本与校验文件](https://github.com/StarSure/NotchCopy/releases/latest)
 
 1. 下载 Release 附件中的 `NotchCopy-…-universal.zip`。GitHub 自动生成的 `Source code` 是源码，不是安装包。
 2. 双击 ZIP 解压，将 `NotchCopy.app` 拖入「应用程序」，然后打开。
@@ -126,6 +126,8 @@ macOS 14+ · Apple Silicon / Intel · 本机存储 · MIT 开源
 列表由鼠标滚轮或触控板手动滚动；鼠标悬停和键盘选择只改变高亮，不会自动滚动列表。
 
 上方连接外接屏时，悬停区位于刘海下沿附近，与屏幕交界留出距离。已进入外接屏的鼠标不会触发内置屏面板。程序不会锁定、移动鼠标或修改显示器排列；正常跨屏移动保留。无物理刘海的 Mac 也可使用屏幕顶部中央的隐藏热区。
+
+只有内置屏，或外接屏未连接在刘海上方时，触发区覆盖屏幕最顶端；可以直接将鼠标移到刘海顶部停留，无需刻意停在下沿的一小段区域。
 
 如果快捷键被其他应用占用，菜单会显示提示，仍可使用悬停或菜单入口。程序不默认开机启动。
 
